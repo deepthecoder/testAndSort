@@ -1,3 +1,5 @@
 a.exe
 .o
 .vscode
+obj/Debug
+bin/Debug
