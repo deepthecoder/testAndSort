@@ -1,6 +1,6 @@
 a.exe
-.cbp
-.layout
+testAndSort.cbp
+testAndSort.layout
 .o
 .vscode
 obj/Debug
