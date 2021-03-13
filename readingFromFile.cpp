@@ -16,8 +16,26 @@ vector<int> readVectorFromFile(string fileName)
     {
         for (string line; getline(scan, line);)
         {
-            if (isdigit(line[0]))
+            int flag = 0;
+            if (isdigit(line[0]) || (line[0] == '-' && isdigit(line[1])))
             {
+                for (int i = 1; i < line.size(); i++)
+                {
+                    if (line[i] >= '0' && line[i] <= '9')
+                    {
+                    }
+                    else
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag == 1)
+                {
+                    cout << "Invalid input in the file ---> " <<line<< endl;
+                    list.clear();
+                    return list;
+                }
                 stringstream converter(line);
                 int number = 0;
                 converter >> number;
