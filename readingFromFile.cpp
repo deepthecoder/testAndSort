@@ -32,7 +32,7 @@ vector<int> readVectorFromFile(string fileName)
                 }
                 if (flag == 1)
                 {
-                    cout << "Invalid input in the file ---> " <<line<< endl;
+                    cout << "Invalid input in the file ---> " << line << endl;
                     list.clear();
                     return list;
                 }

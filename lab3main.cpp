@@ -19,19 +19,19 @@ int main(int argc, char **argv)
         }
         else
         {
-            vector<int> list=readVectorFromFile(fileName);
-            if(algorithm=="mergesort")
+            vector<int> list = readVectorFromFile(fileName);
+            if (algorithm == "mergesort")
             {
-               mergeSort(list,0,list.size()-1);
-               for(int i=0;i<list.size();i++)
-                cout<<list[i]<<endl;
+                mergeSort(list, 0, list.size() - 1);
+                for (int i = 0; i < list.size(); i++)
+                    cout << list[i] << endl;
             }
-            if(algorithm=="quicksort")
+            if (algorithm == "quicksort")
             {
-            
-               quickSort(list,0,list.size()-1);
-               for(int i=0;i<list.size();i++)
-                cout<<list[i]<<endl;
+
+                quickSort(list, 0, list.size() - 1);
+                for (int i = 0; i < list.size(); i++)
+                    cout << list[i] << endl;
             }
         }
     }
