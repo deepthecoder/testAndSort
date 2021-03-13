@@ -52,7 +52,7 @@ int main()
     cout << "Testing QuickSort ...\n";
     testSorting(quickSort);
 
-    //Yet to implement
+    
     //cout << "Testing TimSort \n";
     //testSorting();
 }
