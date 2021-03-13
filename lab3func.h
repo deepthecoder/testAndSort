@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstring>
+#include <functional>
 using namespace std;
 
 vector<int> readVectorFromFile(string);
