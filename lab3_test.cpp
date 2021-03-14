@@ -9,7 +9,6 @@ void printVector(vector<int> a)
     {
         cout << a[i] << " ";
     }
-    
 }
 
 void test(vector<int> a, vector<int> output, std::function<void(vector<int> &, int, int)> sort_func, int left, int right)
@@ -32,15 +31,18 @@ void test(vector<int> a, vector<int> output, std::function<void(vector<int> &, i
 
 void testSorting(std::function<void(vector<int> &, int, int)> sort_func)
 {
+    //testing sort on empty input.
     vector<int> input;
     vector<int> output;
 
     test(input, output, sort_func, 0, input.size() - 1);
 
+    //testing sort on the entire list.
     input = {10, 2, -3, 1, 1, 2, -89};
     output = {-89, -3, 1, 1, 2, 2, 10};
     test(input, output, sort_func, 0, input.size() - 1);
 
+    //testing sort on a part of the list.
     input = {10, 2, -3, 1, 1, 2, -89};
     output = {-3, 1, 1, 2, 10, 2, -89};
     test(input, output, sort_func, 0, 4);
@@ -103,6 +105,14 @@ void testMerge(std::function<void(vector<int> &, vector<int> &, vector<int> &)> 
     cout << "-------------------------\n";
 }
 
+/*
+    The below main function tests
+    the four different algorithms
+    - quicksort
+    - mergesort
+    - timsort
+    - merge function for timsort
+*/
 int main()
 {
     cout << "Testing MergeSort ...\n";

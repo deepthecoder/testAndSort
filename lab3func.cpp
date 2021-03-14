@@ -1,5 +1,11 @@
 #include "lab3func.h"
 
+/*
+    The mergesort is a divide and 
+    conquer technique which divides 
+    the list into 2 parts and finally 
+    the two lists(sorted) are merged.
+*/
 void mergeSort(vector<int> &L, int left, int right)
 {
     if (left < right)
@@ -12,6 +18,7 @@ void mergeSort(vector<int> &L, int left, int right)
     }
 }
 
+//The below helper function merges two sorted lists.
 void merge(vector<int> &L, int l, int m, int r)
 {
     int n1 = m - l + 1;
@@ -120,13 +127,11 @@ void mergeForTimSort(vector<int> &v1, vector<int> &v2, vector<int> &res)
         res.push_back(v2[j]);
         j++;
     }
-
-    // for (int i = 0; i < res.size(); i++)
-    // {
-    //     cout << res[i] << " ";
-    // }
 }
 
+/*
+    The helper function enables to merge k sorted lists.
+*/
 void kWayMerge(vector<vector<int>> listOfLists, vector<int> &output)
 {
     vector<int> myList = listOfLists[0];
@@ -153,6 +158,13 @@ void insertionSort(vector<int> &l, int left, int right)
     }
 }
 
+/*
+    The TimSort algorithm breaks the given 
+    list into smaller partitions and each partition is 
+    sorted using insertion sort and then merged finally into 
+    the list.
+*/
+
 void timSort(vector<int> &list, int run)
 {
     vector<vector<int>> listOfRuns;
@@ -172,6 +184,5 @@ void timSort(vector<int> &list, int run)
 
     vector<int> output;
     kWayMerge(listOfRuns, output);
-    list=output;
-    
+    list = output;
 }
