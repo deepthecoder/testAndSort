@@ -1,5 +1,12 @@
 #include "lab3func.h"
 
+/*
+    This helper function checks 
+    for the necessary condition 
+    to verify if the input file has 
+    the correct file extension and 
+    correct input numbers.
+*/
 vector<int> readVectorFromFile(string fileName)
 {
     std::ifstream infile(fileName);
