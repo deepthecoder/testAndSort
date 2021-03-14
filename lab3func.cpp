@@ -87,16 +87,16 @@ int partition(vector<int> &L, int low, int high)
     return i + 1;
 }
 
-void mergeForTimSort(vector<int> &v1, vector<int> &v2,vector<int> &res)
+void mergeForTimSort(vector<int> &v1, vector<int> &v2, vector<int> &res)
 {
-    int n=v1.size();
-    int m=v2.size();
-    int i=0,j=0,k=0;
+    int n = v1.size();
+    int m = v2.size();
+    int i = 0, j = 0, k = 0;
     res.clear();
-    while(i<n && j<m)
+    while (i < n && j < m)
     {
         //cout<<"n= "<<n<<" "<<"m= "<<m;
-        if(v1[i]<=v2[j])
+        if (v1[i] <= v2[j])
         {
             res.push_back(v1[i]);
             i++;
@@ -107,22 +107,74 @@ void mergeForTimSort(vector<int> &v1, vector<int> &v2,vector<int> &res)
             res.push_back(v2[j]);
             j++;
         }
-        
+
         k++;
     }
-    while(i<n)
+    while (i < n)
     {
         res.push_back(v1[i]);
         i++;
     }
-    while(j<m)
+    while (j < m)
     {
         res.push_back(v2[j]);
         j++;
     }
 
-    for(int i=0;i<res.size();i++)
+    // for (int i = 0; i < res.size(); i++)
+    // {
+    //     cout << res[i] << " ";
+    // }
+}
+
+void kWayMerge(vector<vector<int>> listOfLists, vector<int> &output)
+{
+    vector<int> myList = listOfLists[0];
+    for (int i = 1; i < listOfLists.size(); i++)
     {
-        cout<<res[i]<<" ";
+        mergeForTimSort(listOfLists[i], myList, output);
+        myList = output;
     }
+    output = myList;
+}
+
+void insertionSort(vector<int> &l, int left, int right)
+{
+    for (int i = left + 1; i <= right; i++)
+    {
+        int temp = l[i];
+        int j = i - 1;
+        while (j >= left && l[j] > temp)
+        {
+            l[j + 1] = l[j];
+            j--;
+        }
+        l[j + 1] = temp;
+    }
+}
+
+void timSort(vector<int> &list, int run)
+{
+    vector<vector<int>> listOfRuns;
+    int n = list.size();
+    for (int i = 0; i < list.size(); i += run)
+    {
+        int end = min((i + run - 1), n - 1);
+        insertionSort(list, i, end);
+        int j = i;
+        vector<int> sublist;
+        for (j = i; j <= end; j++)
+        {
+            sublist.push_back(list[j]);
+        }
+        listOfRuns.push_back(sublist);
+    }
+
+    vector<int> output;
+    kWayMerge(listOfRuns, output);
+    for (int i = 0; i < output.size(); i++)
+    {
+        cout << output[i] << " ";
+    }
+    cout << "\n";
 }
