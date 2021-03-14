@@ -9,6 +9,7 @@ void printVector(vector<int> a)
     {
         cout << a[i] << " ";
     }
+    
 }
 
 void test(vector<int> a, vector<int> output, std::function<void(vector<int> &, int, int)> sort_func, int left, int right)
@@ -53,24 +54,23 @@ void testTimSort(std::function<void(vector<int> &, int)> sort_func)
 
     input = {10, 2, -3, 1, 1, 2, -89};
     output = {-89, -3, 1, 1, 2, 2, 10};
-    sort_func(input,32);
-
-    cout<<"\nInput: ";
+    cout << "\nInput: ";
     printVector(input);
-    cout<<"\nOutput: ";
+    sort_func(input, 32);
+
+    cout << "\nOutput: ";
     printVector(output);
 
-    if(input==output)
+    if (input == output)
     {
-        cout<<"\nTest Case passed\n";
+        cout << "\nTest Case passed\n";
     }
     else
     {
-        cout<<"\nTest Case failed\n";
+        cout << "\nTest Case failed\n";
     }
-        
-    cout << "-------------------------\n";
 
+    cout << "-------------------------\n";
 }
 
 void testMerge(std::function<void(vector<int> &, vector<int> &, vector<int> &)> merge_func)
@@ -83,27 +83,22 @@ void testMerge(std::function<void(vector<int> &, vector<int> &, vector<int> &)> 
     v2 = {1, 2, 3, 3, 3, 4};
     output = {1, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 5, 6};
     merge_func(v1, v2, res);
+    cout << "\nList 1: ";
+    printVector(v1);
+    cout << "\nList 2: ";
+    printVector(v2);
+    cout << "\nOutput: ";
+    printVector(output);
     if (res == output)
     {
-        cout<<"\nList 1: ";
-        printVector(v1);
-        cout<<"\nList 2: ";
-        printVector(v2);
-        cout<<"\nOutput: ";
-        printVector(output);
+
         cout << "\nTest Case Passed\n";
     }
     else
     {
-        cout<<"\nList 1: ";
-        printVector(v1);
-        cout<<"\nList 2: ";
-        printVector(v2);
-        cout<<"\nOutput: ";
-        printVector(output);
+
         cout << "\nTest Case failed\n";
     }
-        
 
     cout << "-------------------------\n";
 }
@@ -118,7 +113,7 @@ int main()
 
     cout << "Testing the merge functionality of Tim sort\n";
     testMerge(mergeForTimSort);
-    
+
     cout << "Testing TimSort... \n";
     testTimSort(timSort);
 }

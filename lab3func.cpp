@@ -172,9 +172,6 @@ void timSort(vector<int> &list, int run)
 
     vector<int> output;
     kWayMerge(listOfRuns, output);
-    for (int i = 0; i < output.size(); i++)
-    {
-        cout << output[i] << " ";
-    }
-    cout << "\n";
+    list=output;
+    
 }

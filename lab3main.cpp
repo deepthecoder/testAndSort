@@ -38,6 +38,9 @@ int main(int argc, char **argv)
             if (algorithm == "timsort")
             {
                 timSort(list, 32);
+                for (int i = 0; i < list.size(); i++)
+                    cout << list[i] << " ";
+                cout << "\n";
             }
         }
     }
