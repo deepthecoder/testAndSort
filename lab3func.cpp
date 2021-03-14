@@ -86,3 +86,43 @@ int partition(vector<int> &L, int low, int high)
     L[high] = temp;
     return i + 1;
 }
+
+void mergeForTimSort(vector<int> &v1, vector<int> &v2,vector<int> &res)
+{
+    int n=v1.size();
+    int m=v2.size();
+    int i=0,j=0,k=0;
+    res.clear();
+    while(i<n && j<m)
+    {
+        //cout<<"n= "<<n<<" "<<"m= "<<m;
+        if(v1[i]<=v2[j])
+        {
+            res.push_back(v1[i]);
+            i++;
+        }
+        else
+        {
+            //res[k]=v2[j];
+            res.push_back(v2[j]);
+            j++;
+        }
+        
+        k++;
+    }
+    while(i<n)
+    {
+        res.push_back(v1[i]);
+        i++;
+    }
+    while(j<m)
+    {
+        res.push_back(v2[j]);
+        j++;
+    }
+
+    for(int i=0;i<res.size();i++)
+    {
+        cout<<res[i]<<" ";
+    }
+}

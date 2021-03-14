@@ -12,3 +12,5 @@ void merge(vector<int> &L, int l, int m, int r);
 
 void quickSort(vector<int> &L, int, int);
 int partition(vector<int> &L, int, int);
+
+void mergeForTimSort(vector<int> &v1, vector<int> &v2,vector<int> &res);
