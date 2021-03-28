@@ -132,6 +132,7 @@ void mergeForTimSort(vector<int> &v1, vector<int> &v2, vector<int> &res)
 /*
     The helper function enables to merge k sorted lists.
 */
+
 void kWayMerge(vector<vector<int>> listOfLists, vector<int> &output)
 {
     vector<int> myList = listOfLists[0];
@@ -158,17 +159,61 @@ void insertionSort(vector<int> &l, int left, int right)
     }
 }
 
+void mergeRecursive(int l, int r, int max_len, int *out)
+{
+    int l_in = l * max_len, r_in = ((l + r) / 2 + 1) * max_len;
+
+    int l_c = ((l + r) / 2 - l + 1) * max_len;
+    int r_c = (r - (l + r) / 2) * max_len;
+
+    int l_arr[l_c], r_arr[r_c];
+
+    // storing data in left array
+    for (int i = 0; i < l_c; i++)
+        l_arr[i] = out[l_in + i];
+
+    // storing data in right array
+    for (int i = 0; i < r_c; i++)
+        r_arr[i] = out[r_in + i];
+
+    int l_curr = 0, r_curr = 0, in = l_in;
+
+    while (l_curr + r_curr < l_c + r_c)
+    {
+        if (r_curr == r_c || (l_curr != l_c && l_arr[l_curr] < r_arr[r_curr]))
+            out[in] = l_arr[l_curr],
+            l_curr++, in++;
+        else
+            out[in] = r_arr[r_curr],
+            r_curr++, in++;
+    }
+}
+
+void divide(int l, int r, int max_len, int *out, vector<vector<int>> list)
+{
+    if (l == r)
+    {
+        for (int i = 0; i < max_len; i++)
+        {
+            out[l * max_len + i] = list[l][i];
+        }
+        return;
+    }
+    divide(l, (l + r) / 2, max_len, out, list);
+    divide((l + r) / 2 + 1, r, max_len, out, list);
+    mergeRecursive(l, r, max_len, out);
+}
 /*
     The TimSort algorithm breaks the given 
     list into smaller partitions and each partition is 
     sorted using insertion sort and then merged finally into 
     the list.
 */
-
 void timSort(vector<int> &list, int run)
 {
     vector<vector<int>> listOfRuns;
     int n = list.size();
+    int max_len = 99999, len = 0;
     for (int i = 0; i < list.size(); i += run)
     {
         int end = min((i + run - 1), n - 1);
@@ -179,10 +224,30 @@ void timSort(vector<int> &list, int run)
         {
             sublist.push_back(list[j]);
         }
+        if (sublist.size() < max_len)
+        {
+            max_len = sublist.size();
+        }
         listOfRuns.push_back(sublist);
     }
 
     vector<int> output;
+    int k = listOfRuns.size();
+    int *out = new int[max_len * k];
+    cout << "Do you want to implement the k way merge recursively?(Y/N) ->";
+    char c;
+    cin >> c;
+    if (c == 'Y' || c == 'y')
+    {
+        divide(0, k - 1, max_len, out, listOfRuns);
+        for (int i = 0; i < max_len * k; i++)
+        {
+            //cout << out[i] << " ";
+            output.push_back(out[i]);
+        }
+        list=output;
+        return;
+    }
     kWayMerge(listOfRuns, output);
     list = output;
 }
